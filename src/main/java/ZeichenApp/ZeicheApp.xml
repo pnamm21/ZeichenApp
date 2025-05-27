@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gruppe>
+    <linie x="50" y="50" x2="100" y2="50"/>
+    <linie x="100" y="50" x2="100" y2="100"/>
+    <linie x="100" y="100" x2="50" y2="100"/>
+    <linie x="50" y="100" x2="50" y2="50"/>
+    <ellipse x="50" y="50" x2="100" y2="100"/>
+    <text x="45" y="20" text="Test-Bild"/>
+    <text x="65" y="80" text="XML"/>
+</gruppe>
