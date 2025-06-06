@@ -25,8 +25,8 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Schulaufgabe-Note: ");
-                    int Schul_note = scanner.nextInt();
-                    noten.neueEx(Schul_note);
+                    int Assign_note = scanner.nextInt();
+                    noten.neueAssign(Assign_note);
                     break;
                 case 3:
                     System.out.println("Die gesamte Note: " + noten.gibGesamtNote());

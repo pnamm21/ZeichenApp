@@ -16,7 +16,8 @@ public class Ellipse extends GrafikKomponente{
 
     @Override
     public void zeichnen(Graphics g){
-        System.out.println(this);
+
+        g.drawOval(x,y,x2,y2);
     }
 
     @Override

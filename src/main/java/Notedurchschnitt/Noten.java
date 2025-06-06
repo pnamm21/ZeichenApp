@@ -4,7 +4,7 @@ public class Noten {
     private int summe;
     private int anzahl;
 
-    Noten(int summe, int anzahl){
+    public Noten(int summe, int anzahl) {
         this.summe = summe;
         this.anzahl = anzahl;
     }
@@ -14,7 +14,7 @@ public class Noten {
         anzahl++;
     }
 
-    public void neueSchux(int note){
+    public void neueAssign(int note){
         int temp = note * 2;
         summe += temp;
         anzahl++;

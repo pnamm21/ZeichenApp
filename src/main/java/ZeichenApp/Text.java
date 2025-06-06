@@ -13,7 +13,8 @@ public class Text extends GrafikKomponente{
 
     @Override
     public void zeichnen(Graphics g) {
-        System.out.println(this);
+
+        g.drawString(text,x,y);
     }
 
     @Override
