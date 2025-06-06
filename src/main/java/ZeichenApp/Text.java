@@ -14,7 +14,10 @@ public class Text extends GrafikKomponente{
     @Override
     public void zeichnen(Graphics g) {
 
+        g.setFont(new Font("Arial", Font.PLAIN, 16));
+        g.setColor(Color.BLACK);
         g.drawString(text,x,y);
+
     }
 
     @Override
