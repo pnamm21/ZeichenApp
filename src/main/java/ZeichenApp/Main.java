@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/* ---------- Rechteck-Komponente ---------- */
 class Rechteck extends GrafikKomponente {
     private final int x, y, width, height;
 
@@ -19,8 +20,13 @@ class Rechteck extends GrafikKomponente {
         g.drawRect(x, y, width, height);
     }
 }
+
+/* ---------- Hauptfenster ---------- */
 public class Main extends JFrame {
 
+    private Gruppe gruppe;                         // <‑‑ fehlte
+
+    /* Zeichenfläche */
     private class ZeichenPanel extends JPanel {
         ZeichenPanel() {
             setPreferredSize(new Dimension(800, 600));
@@ -32,22 +38,25 @@ public class Main extends JFrame {
         }
     }
 
-    private Gruppe gruppe;
-
     public Main() {
 
-        Linie    linie = new Linie   (0, 0, 100, 100);
-        Ellipse  ellipse = new Ellipse(50, 50, 50, 50);
-        Text     text   = new Text   (10, 20, "Zeichnung");
+        /* --- Fallback-Objekte, falls Datei nicht gelesen werden kann --- */
+        Linie    linie    = new Linie  (0, 0, 100, 100);
+        Ellipse  ellipse  = new Ellipse(50, 50, 50, 50);
+        Text     text     = new Text   (10, 20, "Zeichnung");
         Rechteck rechteck = new Rechteck(10, 30, 200, 200);
 
-        ArrayList<GrafikKomponente> list = new ArrayList<>();
-        list.add(linie);
-        list.add(ellipse);
-        list.add(text);
-        list.add(rechteck);
+        ArrayList<GrafikKomponente> fallback = new ArrayList<>();
+        fallback.add(linie);
+        fallback.add(ellipse);
+        fallback.add(text);
+        fallback.add(rechteck);
 
-        gruppe = new Gruppe(list);
+        /* --- Versuch, grafische Elemente aus Datei zu laden --- */
+        gruppe = Gruppe.readTxt("grafik.txt");     // Pfad ggf. anpassen
+        if (gruppe == null) {
+            gruppe = new Gruppe(fallback);         // Fallback
+        }
 
         /* Fensteraufbau */
         setTitle("Test");
@@ -59,6 +68,7 @@ public class Main extends JFrame {
         setVisible(true);
     }
 
+    /* Zeichnen delegieren */
     private void zeichnenAlles(Graphics g) {
         gruppe.zeichnen(g);
     }
