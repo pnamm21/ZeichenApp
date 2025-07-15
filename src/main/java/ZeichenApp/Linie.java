@@ -14,6 +14,13 @@ public class Linie extends GrafikKomponente{
         this.y2 = y2;
     }
 
+    public void mausLinksGedruckt(int xm, int ym){
+
+    }
+    public void mausBewegt(int xm, int ym){
+
+    }
+
     @Override
     public void zeichnen(Graphics g){
 

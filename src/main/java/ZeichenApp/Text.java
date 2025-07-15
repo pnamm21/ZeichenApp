@@ -11,6 +11,13 @@ public class Text extends GrafikKomponente{
         this.text = text;
     }
 
+    public void mausLinksGedruckt(int xm, int ym){
+
+    }
+    public void mausBewegt(int xm, int ym){
+
+    }
+
     @Override
     public void zeichnen(Graphics g) {
 

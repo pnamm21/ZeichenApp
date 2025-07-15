@@ -24,6 +24,13 @@ public class Gruppe extends GrafikKomponente {
         }
     }
 
+    public void mausLinksGedruckt(int xm, int ym){
+
+    }
+    public void mausBewegt(int xm, int ym){
+
+    }
+
     public void add(GrafikKomponente k) {
         komponenten.add(k);
     }

@@ -2,32 +2,16 @@ package ZeichenApp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-/* ---------- Rechteck-Komponente ---------- */
-class Rechteck extends GrafikKomponente {
-    private final int x, y, width, height;
+public class Main extends JFrame implements MouseListener, MouseMotionListener {
 
-    public Rechteck(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-    }
+    private Gruppe gruppe;
 
-    @Override
-    public void zeichnen(Graphics g) {
-        g.drawRect(x, y, width, height);
-    }
-}
-
-/* ---------- Hauptfenster ---------- */
-public class Main extends JFrame {
-
-    private Gruppe gruppe;                         // <‑‑ fehlte
-
-    /* Zeichenfläche */
-    private class ZeichenPanel extends JPanel {
+        private class ZeichenPanel extends JPanel {
         ZeichenPanel() {
             setPreferredSize(new Dimension(800, 600));
         }
@@ -44,18 +28,15 @@ public class Main extends JFrame {
         Linie    linie    = new Linie  (0, 0, 100, 100);
         Ellipse  ellipse  = new Ellipse(50, 50, 50, 50);
         Text     text     = new Text   (10, 20, "Zeichnung");
-        Rechteck rechteck = new Rechteck(10, 30, 200, 200);
 
         ArrayList<GrafikKomponente> fallback = new ArrayList<>();
         fallback.add(linie);
         fallback.add(ellipse);
         fallback.add(text);
-        fallback.add(rechteck);
 
-        /* --- Versuch, grafische Elemente aus Datei zu laden --- */
-        gruppe = Gruppe.readTxt("grafik.txt");     // Pfad ggf. anpassen
+        //gruppe = Gruppe.readTxt("grafik.txt");
         if (gruppe == null) {
-            gruppe = new Gruppe(fallback);         // Fallback
+            gruppe = new Gruppe(fallback);
         }
 
         /* Fensteraufbau */
@@ -68,7 +49,41 @@ public class Main extends JFrame {
         setVisible(true);
     }
 
-    /* Zeichnen delegieren */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    // brauchen
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
     private void zeichnenAlles(Graphics g) {
         gruppe.zeichnen(g);
     }
