@@ -1,0 +1,7 @@
+Linie 100 50 50 50
+Linie 50 50 100 50
+Linie 50 100 50 50
+Linie 50 50 50 100
+Rectangle 50 100 50 100
+Elipse 100 50 100 50
+Text 45 20 Text-Bild

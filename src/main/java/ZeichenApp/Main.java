@@ -4,9 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+class Rechteck extends GrafikKomponente {
+    private final int x, y, width, height;
+
+    public Rechteck(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public void zeichnen(Graphics g) {
+        g.drawRect(x, y, width, height);
+    }
+}
 public class Main extends JFrame {
 
-    class ZeichenPanel extends JPanel {
+    private class ZeichenPanel extends JPanel {
+        ZeichenPanel() {
+            setPreferredSize(new Dimension(800, 600));
+        }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -14,43 +32,38 @@ public class Main extends JFrame {
         }
     }
 
-    private Linie l;
-    private Ellipse e;
-    private Text t;
-    private Gruppe g;
-    private Rectangle r;
+    private Gruppe gruppe;
 
     public Main() {
-        this.l = new Linie(0, 0, 100, 100);
-        this.e = new Ellipse(50, 50, 50, 50);
-        this.t = new Text(10, 20, "Zeichnung");
-        this.r = new Rectangle(10,30,200,200);
 
-        // Группируем объекты
-        ArrayList<GrafikKomponente> komponenten = new ArrayList<>();
-        komponenten.add(l);
-        komponenten.add(e);
-        komponenten.add(t);
-        komponenten.add(r);
-        this.g = new Gruppe(komponenten);
+        Linie    linie = new Linie   (0, 0, 100, 100);
+        Ellipse  ellipse = new Ellipse(50, 50, 50, 50);
+        Text     text   = new Text   (10, 20, "Zeichnung");
+        Rechteck rechteck = new Rechteck(10, 30, 200, 200);
 
-        ZeichenPanel zeichenPanel = new ZeichenPanel();
-        add(zeichenPanel);
+        ArrayList<GrafikKomponente> list = new ArrayList<>();
+        list.add(linie);
+        list.add(ellipse);
+        list.add(text);
+        list.add(rechteck);
 
-        setVisible(true);
+        gruppe = new Gruppe(list);
+
+        /* Fensteraufbau */
         setTitle("Test");
-        setLocation(5, 10);
-        setSize(1000, 2000);
+        add(new ZeichenPanel());
+
+        pack();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
-    public void zeichnenAlles(Graphics g) {
-        if (g == null) return;
-
-        this.g.zeichnen(g);
+    private void zeichnenAlles(Graphics g) {
+        gruppe.zeichnen(g);
     }
 
     public static void main(String[] args) {
-        new Main();
+        SwingUtilities.invokeLater(Main::new);
     }
 }
